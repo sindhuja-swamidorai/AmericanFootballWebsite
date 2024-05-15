@@ -27,17 +27,51 @@ window.onload = init;    // Do not put () after init!
 
 // The init function connect the button to the code that
 // should run when the button is clicked
+
 function init() {
+  
+  //Find the SELECT list
+  let teamsList = document.getElementById("teams");
+     
+  let unselected = new Option("Select a team", "");
+  teamsList.appendChild(unselected);
 
-//Find the SELECT list
-let teamsList = document.getElementById("teams");
+  let length = teams.length;
 
-let length = teams.length;
-//for (let team in teams){    
-
-for (let i = 0; i < length; i++) {
-    let theOption = new Option(teams[i].name, teams[i].teamcode)
+  for (let i = 0; i < length; i++) {
+    let theOption = new Option(teams[i].name, teams[i].teamcode);
     teamsList.appendChild(theOption);
-}
+  }
+
+  teamsList.onchange = onSelectBtnChange;
 
 }
+
+
+function onSelectBtnClick() {
+
+  //Find the SELECT list
+  let itemsList = document.getElementById("teams");
+     
+  let test = new Option("Check Check", "");
+  itemsList.appendChild(test);
+
+  console.log("Select On Click")  
+
+}
+
+function onSelectBtnChange() {
+    
+  let itemsList = document.getElementById("teams");
+     
+  let messageDiv = document.getElementById("messageDiv");
+
+  let textMessage = "You selected " + teams[itemsList.selectedIndex-1].name + '('
+                    + teams[itemsList.selectedIndex-1].teamcode +  ') who play in' + teams[itemsList.selectedIndex-1].locatedIn;
+
+  messageDiv.innerHTML = textMessage;
+
+  console.log("Select On Change")  
+
+}
+
